@@ -1,0 +1,12 @@
+# Assets from subprojects are accessible from "/public/lib/<subproject-name>"
+# see https://www.playframework.com/documentation/2.5.x/SBTSubProjects
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+GET     /                           controllers.Home.index()
+
+GET     /VisualTest     controllers.VisualTest.index()
+GET     /VisualTest/ExtremeData     controllers.VisualTest.extremeData()
+GET     /Roles/:id      controllers.Home.roles(id: String)
+GET     /Find           controllers.Survey.questions()
+POST    /Find           controllers.Survey.answer()

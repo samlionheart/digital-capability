@@ -1,0 +1,35 @@
+@import views.html.common.page.govukTemplate
+
+@(htmlTitle: String)(content: Html)
+
+@head = {
+}
+
+@govukTemplate(
+  Some(htmlTitle),
+  bodyClasses = None,
+  htmlLang = None
+)(
+  head = head,
+  bodyStart = HtmlFormat.empty,
+  bodyEnd = HtmlFormat.empty,
+  insideHeader = HtmlFormat.empty,
+  afterHeader = HtmlFormat.empty,
+  footerTop = HtmlFormat.empty,
+  footerLinks = HtmlFormat.empty,
+  headerClass = Html("with-proposition"),
+  propositionHeader = Html("<div class=\"header-proposition\"><div class=\"content\"><a href=\"#proposition-links\" class=\"js-header-toggle menu\">Menu</a><nav id=\"proposition-menu\"><a id=\"proposition-name\" href=\"/\">"
+    + <br>Regulatory Delivery Digital Capability</br> + "</a></nav></div></div>"),
+  homepageUrl = None,
+  globalHeaderText = None,
+  cookieMessage = None,
+  skipLinkMessage = None,
+  skipLinkTarget = "contentStart",
+  logoLinkTitle = None,
+  licenceMessage = Html("<p></p>"),
+  crownCopyrightMessage = None
+)(
+  Html("<main id=\"content\" role=\"main\"> <div class=\"phase-banner-alpha\"><p><strong class=\"phase-tag\">ALPHA</strong><span>This is a new service – your <a href=mailto:paul.turner@@beis.gov.uk>feedback</a> will help us to improve it.</span></p></div>" +
+  content +
+  "</main>")
+)

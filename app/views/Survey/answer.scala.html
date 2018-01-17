@@ -1,0 +1,37 @@
+@(model: Map[DigitalRole, java.math.BigDecimal])
+<div class="breadcrumbs">
+    <ol>
+        <li><a href="@routes.Home.index()">Home</a></li>
+        <li><a href="@routes.Survey.questions()">Find a role</a></li>
+    </ol>
+</div>
+<div class="scannable-wrapper">
+    <h1 class="heading-xlarge">
+        Your results
+    </h1>
+    <p>
+        Your results are as follows.  You can find out more about a role by clicking on the role on the chart.
+    </p>
+    <div id="answercontainer">
+        <ul class="list-bullet">
+            @for(score <- model) {
+                <li>
+                    <b><a href="@routes.Home.roles(score._1.descriptor)">@score._1.descriptor:</a></b>
+                    @score._2%
+                </li>
+            }
+        </ul>
+    </div>
+    <p>
+        Scale: 50-65% - Potential fit; 66-85% - Good fit; 86-100% - Exceptional fit
+    </p>
+</div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src='@routes.Assets.at("javascripts/answerGraph.js")'></script>
+<script>
+    var x = []
+    @for(score <- model) {
+        x.push(["@score._1.descriptor", @score._2]);
+    }
+    answerGraph("answercontainer", x);
+</script>

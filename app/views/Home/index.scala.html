@@ -1,0 +1,37 @@
+<div class="breadcrumbs">
+    <ol>
+        <li><a href="@routes.Home.index()">Home</a></li>
+    </ol>
+</div>
+<div class="scannable-wrapper">
+    <h1 class="heading-xlarge">
+        My potential digital fit
+    </h1>
+    <p class="lede">
+        Use this tool to help you identify the kind of roles in a digital team that might suit your skills and interests.
+    </p>
+    <p>
+        A digital team has many roles but this tool deals with only a few of them for now. They are:
+    </p>
+    <ul class="rolelist">
+        <li><a href='@routes.Home.roles(DigitalRole.BUSINESS_ANALYST.descriptor)'>@DigitalRole.BUSINESS_ANALYST.descriptor</a></li>
+        <li><a href='@routes.Home.roles(DigitalRole.CONTENT_DESIGNER.descriptor)'>@DigitalRole.CONTENT_DESIGNER.descriptor</a></li>
+        <li><a href='@routes.Home.roles(DigitalRole.DELIVERY_MANAGER.descriptor)'>@DigitalRole.DELIVERY_MANAGER.descriptor</a></li>
+        <li><a href='@routes.Home.roles(DigitalRole.DESIGNER.descriptor)'>@DigitalRole.DESIGNER.descriptor</a></li>
+        <li><a href='@routes.Home.roles(DigitalRole.USER_RESEARCHER.descriptor)'>@DigitalRole.USER_RESEARCHER.descriptor</a></li>
+    </ul>
+    <p>
+        It doesn't matter if you haven't worked in one of these roles before.  Although they each have their own techniques and knowledge, they also rely on skills that you may already have.
+    </p>
+    <p>
+        This tool prompts you to think about what you're good at and what interests you.  Don't just focus on work, but also on what you do elsewhere that may be relevant to the questions.
+    </p>
+    <p>
+        The results will not guarantee a 'digital fit',  but could give you an idea of where to look for your next challenge.
+    </p>
+    <p>
+        <a class="button button-start" href="@routes.Survey.questions()">Find your fit</a>
+    </p>
+</div>
+
+

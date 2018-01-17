@@ -1,0 +1,77 @@
+@(model: SurveyModel)
+<div class="breadcrumbs">
+    <ol>
+        <li><a href="@routes.Home.index()">Home</a></li>
+        <li><a href="@routes.Survey.questions()">Find a role</a></li>
+    </ol>
+</div>
+<div class="scannable-wrapper">
+    <h1 class="heading-xlarge">
+        Find a role
+    </h1>
+    <form METHOD="POST" action="@routes.Survey.answer()" id="theform">
+        <p data-bind="text: progress"></p>
+    @for(qa <- model.questionsAndAnswers) {
+        <div data-bind="visible: currentQuestion() == @qa._1.id" class="questionblock">
+            <fieldset class="surveyquestion">
+                <h2 class="heading-small"><span>@qa._1.id.</span>&nbsp;@qa._1.question</h2>
+                <label class="block-label" for='@{"question_" + qa._1.id +"_yes"}' data-bind="click: nextQuestion">
+                    <input type="radio" id='@{"question_" + qa._1.id +"_yes"}' name='@{"question_" + qa._1.id}' value="1">
+                    Yes
+                </label>
+                <label class="block-label" for='@{"question_" + qa._1.id +"_unsure"}' data-bind="click: nextQuestion">
+                    <input type="radio" id='@{"question_" + qa._1.id +"_unsure"}' name='@{"question_" + qa._1.id}' value="0">
+                    Unsure
+                </label>
+                <label class="block-label" for='@{"question_" + qa._1.id +"_no"}' data-bind="click: nextQuestion">
+                    <input type="radio" id='@{"question_" + qa._1.id +"_no"}' name='@{"question_" + qa._1.id}' value="-1">
+                    No
+                </label>
+            </fieldset>
+        </div>
+    }
+        <fieldset data-bind="visible:currentQuestion() == -1">
+            <input type="submit" class="button" value="Submit answers">
+            <p>
+                Thank you for completing the questions.
+            </p>
+        </fieldset>
+        <p style="display:none; margin-top:0.9em" data-bind="visible: currentQuestion() != 1">
+            <a href="#" data-bind="click: previousQuestion">Go to previous question</a>
+        </p>
+    </form>
+</div>
+<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+
+<script>
+    function ViewModel(numberOfQuestions) {
+        var self = this;
+        self.currentQuestion = ko.observable(1);
+
+        self.progress = ko.computed(function() {
+            var c = self.currentQuestion();
+            if (c < 2) return "";
+            return "Answered " + (c-1) + " of " + numberOfQuestions + " questions.";
+        });
+
+        self.nextQuestion = function() {
+            var next = self.currentQuestion() + 1;
+            if (next > numberOfQuestions) next = -1;
+            setTimeout(function() {self.currentQuestion(next);},150);
+            return true;
+        }
+
+        self.previousQuestion = function() {
+            var previous = self.currentQuestion() - 1;
+            if (previous <= 0) previous = numberOfQuestions -1;
+            self.currentQuestion(previous);
+        }
+    }
+    var numberOfQuestions = @model.questionsAndAnswers.size();
+    ko.applyBindings(new ViewModel(numberOfQuestions));
+</script>
+
+
+
+
+
