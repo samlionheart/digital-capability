@@ -13,6 +13,6 @@ import scala.Option;
  */
 class PageController extends Controller {
     protected Html page(Html content) {
-        return views.html.common.page.govukTemplateDefaults.render("RD Digital Capability", content);
+        return views.html.common.page.govukTemplateDefaults.render("Digital Capability", content);
     }
 }

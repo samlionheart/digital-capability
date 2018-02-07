@@ -19,6 +19,7 @@ public class Home extends PageController {
         if (r.equals("delivery manager")) return ok(page(views.html.Roles.deliveryManager.render()));
         if (r.equals("designer")) return ok(page(views.html.Roles.designer.render()));
         if (r.equals("user researcher")) return ok(page(views.html.Roles.userResearcher.render()));
+        if (r.equals("help")) return ok(page(views.html.Help.help.render()));
 
         return status(404, "Unknown role");
     }
